@@ -3,6 +3,8 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 
+import userRouter from './routers/userRouter';
+
 dotenv.config();
 
 const app = Express();
@@ -10,9 +12,7 @@ const app = Express();
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 
-app.get('/', (req, res) => {
-  res.send('hi');
-});
+app.use('/user', userRouter);
 
 app.listen(process.env.PORT, () => {
   console.log(`Running on port ${process.env.PORT}`);
